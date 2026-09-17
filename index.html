@@ -3,57 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>4K Mart - Everything delivered in 30 minutes</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>4K Mart Myanmar</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #1b4332; color: white; text-align: center; padding: 50px; }
+        h1 { font-size: 40px; }
+        p { font-size: 20px; }
+    </style>
 </head>
 <body>
-
-    <!-- Blinkit Header -->
-    <header class="navbar">
-        <div class="brand-section">
-            <div class="logo">4K <span>mart</span></div>
-            <div class="eta-badge">⚡ 10 MINS</div>
-        </div>
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder='Search "chicken", "prawn", "beef"...' onkeyup="filterProducts()">
-        </div>
-        <button class="cart-btn" onclick="toggleCart()">
-            🛒 My Cart (<span id="cartCount">0</span>)
-        </button>
-    </header>
-
-    <!-- Sub-Header / Location Bar -->
-    <div class="sub-header">
-        📍 <strong>Delivery to:</strong> Yangon Central (10 mins)
-    </div>
-
-    <!-- Category Selector -->
-    <nav class="categories-bar">
-        <button class="cat-chip active" onclick="filterCategory('all', this)">All Items</button>
-        <button class="cat-chip" onclick="filterCategory('Meat', this)">🥩 Meat</button>
-        <button class="cat-chip" onclick="filterCategory('Fish', this)">🐟 Fish & Seafood</button>
-        <button class="cat-chip" onclick="filterCategory('Drinks', this)">🥤 Beverages</button>
-    </nav>
-
-    <!-- Main Grid -->
-    <main class="product-grid" id="productGrid"></main>
-
-    <!-- Blinkit Side Cart Drawer -->
-    <div id="cartModal" class="cart-drawer">
-        <div class="cart-header">
-            <h3>My Cart</h3>
-            <span class="close-btn" onclick="toggleCart()">&times;</span>
-        </div>
-        <div id="cartItems" class="cart-body"></div>
-        <div class="cart-footer">
-            <div class="bill-details">
-                <span>Grand Total:</span>
-                <span class="total-price"><span id="cartTotal">0</span> MMK</span>
-            </div>
-            <button class="checkout-btn" onclick="checkout()">Checkout Order</button>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
+    <h1>🛒 Welcome to 4K Mart</h1>
+    <p>Fresh Grocery & Meat Marketplace Myanmar</p>
+    <p>Status: Website is Online!</p>
 </body>
 </html>
