@@ -1,0 +1,59 @@
+index.html.txt
+HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4K Mart - Fresh Grocery Myanmar</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="navbar">
+        <div class="logo">🛒 4K MART</div>
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search fresh meat, fish, vegetables..." onkeyup="filterProducts()">
+        </div>
+        <div class="cart-btn" onclick="toggleCart()">
+            🛒 Cart (<span id="cartCount">0</span>)
+        </div>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero">
+        <h1>FRESH FROM MYANMAR</h1>
+        <p>Fresh food. Fair prices. Delivered straight to your door.</p>
+    </section>
+
+    <!-- Category Filters -->
+    <section class="categories">
+        <button class="cat-btn active" onclick="filterCategory('all')">All</button>
+        <button class="cat-btn" onclick="filterCategory('Meat')">🥩 Meat</button>
+        <button class="cat-btn" onclick="filterCategory('Fish')">🐟 Fish</button>
+        <button class="cat-btn" onclick="filterCategory('Vegetables')">🥬 Vegetables</button>
+        <button class="cat-btn" onclick="filterCategory('Fruits')">🍎 Fruits</button>
+        <button class="cat-btn" onclick="filterCategory('Grocery')">🛒 Grocery</button>
+    </section>
+
+    <!-- Product Grid -->
+    <main class="product-grid" id="productGrid">
+        <!-- Products populated dynamically by JS -->
+    </main>
+
+    <!-- Slide-Out Shopping Cart Modal -->
+    <div id="cartModal" class="cart-modal">
+        <div class="cart-content">
+            <span class="close-btn" onclick="toggleCart()">&times;</span>
+            <h2>Your Shopping Cart</h2>
+            <div id="cartItems">Your cart is empty.</div>
+            <hr>
+            <h3>Total: <span id="cartTotal">0</span> MMK</h3>
+            <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
