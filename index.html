@@ -1,56 +1,56 @@
-index.html.txt
-HTML
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>4K Mart - Fresh Grocery Myanmar</title>
+    <title>4K Mart - Everything delivered in 10 minutes</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-    <!-- Header Navigation -->
+    <!-- Blinkit Header -->
     <header class="navbar">
-        <div class="logo">🛒 4K MART</div>
-        <div class="search-bar">
-            <input type="text" id="searchInput" placeholder="Search fresh meat, fish, vegetables..." onkeyup="filterProducts()">
+        <div class="brand-section">
+            <div class="logo">4K <span>mart</span></div>
+            <div class="eta-badge">⚡ 10 MINS</div>
         </div>
-        <div class="cart-btn" onclick="toggleCart()">
-            🛒 Cart (<span id="cartCount">0</span>)
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder='Search "chicken", "prawn", "beef"...' onkeyup="filterProducts()">
         </div>
+        <button class="cart-btn" onclick="toggleCart()">
+            🛒 My Cart (<span id="cartCount">0</span>)
+        </button>
     </header>
 
-    <!-- Hero Banner -->
-    <section class="hero">
-        <h1>FRESH FROM MYANMAR</h1>
-        <p>Fresh food. Fair prices. Delivered straight to your door.</p>
-    </section>
+    <!-- Sub-Header / Location Bar -->
+    <div class="sub-header">
+        📍 <strong>Delivery to:</strong> Yangon Central (10 mins)
+    </div>
 
-    <!-- Category Filters -->
-    <section class="categories">
-        <button class="cat-btn active" onclick="filterCategory('all')">All</button>
-        <button class="cat-btn" onclick="filterCategory('Meat')">🥩 Meat</button>
-        <button class="cat-btn" onclick="filterCategory('Fish')">🐟 Fish</button>
-        <button class="cat-btn" onclick="filterCategory('Vegetables')">🥬 Vegetables</button>
-        <button class="cat-btn" onclick="filterCategory('Fruits')">🍎 Fruits</button>
-        <button class="cat-btn" onclick="filterCategory('Grocery')">🛒 Grocery</button>
-    </section>
+    <!-- Category Selector -->
+    <nav class="categories-bar">
+        <button class="cat-chip active" onclick="filterCategory('all', this)">All Items</button>
+        <button class="cat-chip" onclick="filterCategory('Meat', this)">🥩 Meat</button>
+        <button class="cat-chip" onclick="filterCategory('Fish', this)">🐟 Fish & Seafood</button>
+        <button class="cat-chip" onclick="filterCategory('Drinks', this)">🥤 Beverages</button>
+    </nav>
 
-    <!-- Product Grid -->
-    <main class="product-grid" id="productGrid">
-        <!-- Products populated dynamically by JS -->
-    </main>
+    <!-- Main Grid -->
+    <main class="product-grid" id="productGrid"></main>
 
-    <!-- Slide-Out Shopping Cart Modal -->
-    <div id="cartModal" class="cart-modal">
-        <div class="cart-content">
+    <!-- Blinkit Side Cart Drawer -->
+    <div id="cartModal" class="cart-drawer">
+        <div class="cart-header">
+            <h3>My Cart</h3>
             <span class="close-btn" onclick="toggleCart()">&times;</span>
-            <h2>Your Shopping Cart</h2>
-            <div id="cartItems">Your cart is empty.</div>
-            <hr>
-            <h3>Total: <span id="cartTotal">0</span> MMK</h3>
-            <button class="checkout-btn" onclick="checkout()">Proceed to Checkout</button>
+        </div>
+        <div id="cartItems" class="cart-body"></div>
+        <div class="cart-footer">
+            <div class="bill-details">
+                <span>Grand Total:</span>
+                <span class="total-price"><span id="cartTotal">0</span> MMK</span>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">Checkout Order</button>
         </div>
     </div>
 
