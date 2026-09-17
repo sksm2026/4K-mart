@@ -1,68 +1,79 @@
-script.js
-JavaScript
-const products = [
-    { id: 1, name: "Fresh Chicken", category: "Meat", price: 12000, unit: "1 kg" },
-    { id: 2, name: "Pork Belly", category: "Meat", price: 18000, unit: "1 kg" },
-    { id: 3, name: "Rohu Fish", category: "Fish", price: 15000, unit: "1 kg" },
-    { id: 4, name: "Fresh Tomatoes", category: "Vegetables", price: 3000, unit: "1 kg" },
-    { id: 5, name: "Onions", category: "Vegetables", price: 4500, unit: "1 kg" },
-    { id: 6, name: "Fresh Bananas", category: "Fruits", price: 2500, unit: "1 comb" },
-    { id: 7, name: "Cooking Oil", category: "Grocery", price: 9000, unit: "1 liter" },
-    { id: 8, name: "Premium Rice", category: "Grocery", price: 85000, unit: "1 bag" }
+const items = [
+    { id: 1, name: "Chicken 1 kg", category: "Meat", price: 12000, unit: "1 kg" },
+    { id: 2, name: "Chicken wings", category: "Meat", price: 8500, unit: "500 g" },
+    { id: 3, name: "Chicken breast", category: "Meat", price: 9500, unit: "500 g" },
+    { id: 4, name: "Chicken thigh", category: "Meat", price: 9000, unit: "500 g" },
+    { id: 5, name: "Pork 1 kg", category: "Meat", price: 18000, unit: "1 kg" },
+    { id: 6, name: "Pork belly", category: "Meat", price: 19500, unit: "1 kg" },
+    { id: 7, name: "Beef 1 kg", category: "Meat", price: 24000, unit: "1 kg" },
+    { id: 8, name: "Beef steak", category: "Meat", price: 15000, unit: "500 g" },
+    { id: 9, name: "Rohu / ငါးမြစ်ချင်း", category: "Fish", price: 14000, unit: "1 kg" },
+    { id: 10, name: "Katla / ငါးသိုင်း", category: "Fish", price: 15500, unit: "1 kg" },
+    { id: 11, name: "Featherback / ငါးဖယ်", category: "Fish", price: 16000, unit: "500 g" },
+    { id: 12, name: "Pangush 1 kg", category: "Fish", price: 11000, unit: "1 kg" },
+    { id: 13, name: "Pangush cut pieces", category: "Fish", price: 12500, unit: "1 kg" },
+    { id: 14, name: "Ngathalaut / ငါးသလောက်", category: "Fish", price: 28000, unit: "1 kg" },
+    { id: 15, name: "Ngathalaut steak", category: "Fish", price: 16000, unit: "500 g" },
+    { id: 16, name: "Prawn 500 g", category: "Fish", price: 18500, unit: "500 g" },
+    { id: 17, name: "Cola 500 ml", category: "Drinks", price: 1500, unit: "500 ml" },
+    { id: 18, name: "Drinking Water 1L", category: "Drinks", price: 800, unit: "1 Liter" }
 ];
 
 let cart = [];
 
-function displayProducts(items) {
+function displayProducts(productsToRender) {
     const grid = document.getElementById("productGrid");
-    grid.innerHTML = items.map(p => `
-        <div class="product-card">
-            <h3>${p.name}</h3>
-            <p style="color:#777; font-size:12px;">Category: ${p.category}</p>
-            <div class="price">${p.price.toLocaleString()} MMK / ${p.unit}</div>
-            <button class="add-btn" onclick="addToCart(${p.id})">Add to Cart</button>
+    grid.innerHTML = productsToRender.map(item => `
+        <div class="card">
+            <div>
+                <div class="card-timer">⏱️ 10 MINS</div>
+                <div class="card-title">${item.name}</div>
+                <div class="card-weight">${item.unit}</div>
+            </div>
+            <div class="card-footer">
+                <div class="price">${item.price.toLocaleString()} MMK</div>
+                <button class="add-btn" onclick="addToCart(${item.id})">ADD</button>
+            </div>
         </div>
     `).join("");
 }
 
-function filterCategory(category) {
-    document.querySelectorAll(".cat-btn").forEach(btn => btn.classList.remove("active"));
-    event.target.classList.add("active");
+function filterCategory(category, btn) {
+    document.querySelectorAll(".cat-chip").forEach(c => c.classList.remove("active"));
+    btn.classList.add("active");
 
     if (category === "all") {
-        displayProducts(products);
+        displayProducts(items);
     } else {
-        const filtered = products.filter(p => p.category === category);
-        displayProducts(filtered);
+        displayProducts(items.filter(i => i.category === category));
     }
 }
 
 function filterProducts() {
-    const query = document.getElementById("searchInput").value.toLowerCase();
-    const filtered = products.filter(p => p.name.toLowerCase().includes(query));
-    displayProducts(filtered);
+    const q = document.getElementById("searchInput").value.toLowerCase();
+    displayProducts(items.filter(i => i.name.toLowerCase().includes(q)));
 }
 
-function addToCart(productId) {
-    const product = products.find(p => p.id === productId);
-    cart.push(product);
+function addToCart(id) {
+    const found = items.find(i => i.id === id);
+    cart.push(found);
     updateCartUI();
 }
 
 function updateCartUI() {
     document.getElementById("cartCount").innerText = cart.length;
-    const cartItems = document.getElementById("cartItems");
-    
+    const body = document.getElementById("cartItems");
+
     if (cart.length === 0) {
-        cartItems.innerHTML = "Your cart is empty.";
+        body.innerHTML = "<p style='color:#888;'>Your cart is empty.</p>";
         document.getElementById("cartTotal").innerText = "0";
         return;
     }
 
-    cartItems.innerHTML = cart.map((item, idx) => `
-        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+    body.innerHTML = cart.map(item => `
+        <div style="display:flex; justify-content:space-between; margin-bottom:10px; font-size:13px;">
             <span>${item.name}</span>
-            <span>${item.price.toLocaleString()} MMK</span>
+            <strong>${item.price.toLocaleString()} MMK</strong>
         </div>
     `).join("");
 
@@ -72,19 +83,16 @@ function updateCartUI() {
 
 function toggleCart() {
     const modal = document.getElementById("cartModal");
-    modal.style.display = modal.style.display === "block" ? "none" : "block";
+    modal.style.display = modal.style.display === "flex" ? "none" : "flex";
 }
 
 function checkout() {
-    if (cart.length === 0) {
-        alert("Your cart is empty!");
-        return;
-    }
-    alert("Thank you for testing the 4K Mart prototype! Real checkout requires backend integration.");
+    if (cart.length === 0) return alert("Your cart is empty!");
+    alert("Order placed successfully! (Blinkit Prototype)");
     cart = [];
     updateCartUI();
     toggleCart();
 }
 
-// Initial render
-displayProducts(products);
+// Initial display
+displayProducts(items);
