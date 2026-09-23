@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4K Mart - Everything delivered in 10 minutes</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="brand-section">
+            <div class="logo">4K <span>mart</span></div>
+            <div class="eta-badge" aria-label="Delivery in 10 minutes">
+                ⚡ 10 MINS
+            </div>
+        </div>
+
+        <div class="search-container">
+            <label for="searchInput" class="visually-hidden">
+                Search products
+            </label>
+            <input
+                type="search"
+                id="searchInput"
+                placeholder='Search "chicken", "prawn", "beef"...'
+                oninput="filterProducts()"
+            >
+        </div>
+
+        <button class="cart-btn" type="button" onclick="toggleCart()">
+            🛒 My Cart (<span id="cartCount">0</span>)
+        </button>
+    </header>
+
+    <div class="sub-header">
+        📍 <strong>Delivery to:</strong> Yangon Central (10 mins)
+    </div>
+
+    <nav class="categories-bar" aria-label="Product categories">
+        <button class="cat-chip active" type="button" onclick="filterCategory('all', this)">
+            All Items
+        </button>
+        <button class="cat-chip" type="button" onclick="filterCategory('Meat', this)">
+            🥩 Meat
+        </button>
+        <button class="cat-chip" type="button" onclick="filterCategory('Fish', this)">
+            🐟 Fish &amp; Seafood
+        </button>
+        <button class="cat-chip" type="button" onclick="filterCategory('Drinks', this)">
+            🥤 Beverages
+        </button>
+    </nav>
+
+    <main>
+        <section
+            class="product-grid"
+            id="productGrid"
+            aria-label="Available products"
+        ></section>
+    </main>
+
+    <aside
+        id="cartModal"
+        class="cart-drawer"
+        aria-labelledby="cartTitle"
+        aria-hidden="true"
+    >
+        <div class="cart-header">
+            <h2 id="cartTitle">My Cart</h2>
+            <button
+                class="close-btn"
+                type="button"
+                aria-label="Close cart"
+                onclick="toggleCart()"
+            >
+                &times;
+            </button>
+        </div>
+
+        <div id="cartItems" class="cart-body"></div>
+
+        <div class="cart-footer">
+            <div class="bill-details">
+                <span>Grand Total:</span>
+                <span class="total-price">
+                    <span id="cartTotal">0</span> MMK
+                </span>
+            </div>
+
+            <button class="checkout-btn" type="button" onclick="checkout()">
+                Checkout Order
+            </button>
+        </div>
+    </aside>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
